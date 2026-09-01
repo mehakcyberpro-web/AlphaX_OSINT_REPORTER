@@ -1,8 +1,10 @@
 from fastapi import FastAPI
 from .schemas import InvestigationRequest, InvestigationResponse
 from .agents import osint_agent, vulnerability_agent, risk_agent, validation_agent
+from .agent_api import router as agent_router
 
-app = FastAPI(title='ALPHAX OSINT REPORTER API', version='0.1.0')
+app = FastAPI(title='ALPHAX OSINT REPORTER API', version='0.2.0')
+app.include_router(agent_router)
 
 @app.get('/health')
 def health():
